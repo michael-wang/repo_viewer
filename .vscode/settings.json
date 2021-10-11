@@ -2,5 +2,17 @@
 	"editor.fontSize": 16,
 	"window.zoomLevel": 2,
 	"debug.console.fontSize": 16,
-	"terminal.integrated.fontSize": 16
+	"terminal.integrated.fontSize": 16,
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		"**/Thumbs.db": true,
+		"**/*.freezed.dart": true,
+		"**/*.g.dart": true,
+		"**/.gitkeep": false
+	},
+	"explorerExclude.backup": null
 }
