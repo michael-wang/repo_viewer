@@ -61,7 +61,7 @@ class GithubAuthenticator {
       authorizationEndpoint,
       tokenEndpoint,
       secret: clientSecret,
-      httpClient: GithubOAuthHttpClient(),
+      httpClient: _GithubOAuthHttpClient(),
     );
   }
 
@@ -148,7 +148,7 @@ class GithubAuthenticator {
       final refreshed = await old.refresh(
         identifier: clientID,
         secret: clientSecret,
-        httpClient: GithubOAuthHttpClient(),
+        httpClient: _GithubOAuthHttpClient(),
       );
       await _storage.save(refreshed);
       return right(refreshed);
@@ -162,7 +162,7 @@ class GithubAuthenticator {
   }
 }
 
-class GithubOAuthHttpClient extends http.BaseClient {
+class _GithubOAuthHttpClient extends http.BaseClient {
   final httpClient = http.Client();
 
   @override
