@@ -38,7 +38,7 @@ class SignInPage extends StatelessWidget {
                       context.read(authNotifierProvider.notifier).signIn(
                         (authUri) async {
                           final redirectUri = Completer<Uri>();
-                          AutoRouter.of(context).push<Uri>(AuthRoute(
+                          AutoRouter.of(context).push(AuthRoute(
                             authUri: authUri,
                             redirectUriCallback: (uri) {
                               redirectUri.complete(uri);
