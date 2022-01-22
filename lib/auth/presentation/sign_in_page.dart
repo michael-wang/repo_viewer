@@ -1,5 +1,11 @@
+import 'dart:async';
+
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/src/provider.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:repo_viewer/auth/shared/providers.dart';
+import 'package:repo_viewer/core/presentation/routes/app_router.gr.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -28,7 +34,20 @@ class SignInPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 32.0),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read(authNotifierProvider.notifier).signIn(
+                        (authUri) async {
+                          final redirectUri = Completer<Uri>();
+                          AutoRouter.of(context).push<Uri>(AuthRoute(
+                            authUri: authUri,
+                            redirectUriCallback: (uri) {
+                              redirectUri.complete(uri);
+                            },
+                          ));
+                          return redirectUri.future;
+                        },
+                      );
+                    },
                     child: const Text('Sign in'),
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.green),
