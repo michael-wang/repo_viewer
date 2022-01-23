@@ -1,7 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:repo_viewer/auth/presentation/auth_page.dart';
 import 'package:repo_viewer/auth/presentation/sign_in_page.dart';
-import 'package:repo_viewer/repos/presentations/starred_repos_page.dart';
+import 'package:repo_viewer/github/repos/starred/presentations/starred_repos_page.dart';
 import 'package:repo_viewer/splash/presentation/splash_page.dart';
 
 @MaterialAutoRouter(
