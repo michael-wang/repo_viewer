@@ -1,6 +1,6 @@
 @baseUrl = https://api.github.com
 
-@token = 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
+@token = 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
 
 @acceptJson = application/vnd.github.v3+json
 
