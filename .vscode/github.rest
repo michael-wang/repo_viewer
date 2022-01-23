@@ -1,2 +1,49 @@
-GET https://api.github.com/user/starred?page=1
-Authorization: token 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
+@baseUrl = https://api.github.com
+
+@token = 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
+
+@acceptJson = application/vnd.github.v3+json
+
+@acceptHTML = application/vnd.github.v3.html+json
+
+GET {{baseUrl}}/user/starred
+    ?sort=stars
+    ?order=desc
+    ?page=1
+Authorization: token {{token}}
+Accept: {{acceptJson}}
+
+###
+
+GET {{baseUrl}}/search/repositories
+    ?q=tetris+language:assembly
+    &sort=stars
+    &order=desc
+    &page=1
+Authorization: token {{token}}
+Accept: {{acceptJson}}
+
+###
+
+GET {{baseUrl}}/repos/daniel-e/tetros/readme
+Authorization: token {{token}}
+Accept: {{acceptHTML}}
+
+###
+
+PUT {{baseUrl}}/user/starred/daniel-e/tetros
+Authorization: token {{token}}
+Accept: {{acceptJson}}
+Content-Length: 0
+
+###
+
+DELETE {{baseUrl}}/user/starred/daniel-e/tetros
+Authorization: token {{token}}
+Accept: {{acceptJson}}
+
+###
+
+GET {{baseUrl}}/user/starred/daniel-e/tetros
+Authorization: token {{token}}
+Accept: {{acceptJson}}
