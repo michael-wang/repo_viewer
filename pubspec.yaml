@@ -26,6 +26,7 @@ dependencies:
   material_design_icons_flutter: ^5.0.6595
   oauth2: ^2.0.0
   webview_flutter: ^3.0.0
+  json_annotation: ^4.4.0
 
 dev_dependencies:
   auto_route_generator: ^3.2.1
@@ -34,6 +35,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   freezed: ^0.14.5
+  json_serializable: ^6.1.4
 
 dependency_overrides:
   flutter_riverpod:
