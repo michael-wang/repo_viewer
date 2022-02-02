@@ -124,10 +124,11 @@ class __$UserDTOCopyWithImpl<$Res> extends _$UserDTOCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UserDTO implements _UserDTO {
+class _$_UserDTO extends _UserDTO {
   const _$_UserDTO(
       {@JsonKey(name: 'login') required this.name,
-      @JsonKey(name: 'avatar_url') required this.avatarURL});
+      @JsonKey(name: 'avatar_url') required this.avatarURL})
+      : super._();
 
   factory _$_UserDTO.fromJson(Map<String, dynamic> json) =>
       _$$_UserDTOFromJson(json);
@@ -172,10 +173,11 @@ class _$_UserDTO implements _UserDTO {
   }
 }
 
-abstract class _UserDTO implements UserDTO {
+abstract class _UserDTO extends UserDTO {
   const factory _UserDTO(
       {@JsonKey(name: 'login') required String name,
       @JsonKey(name: 'avatar_url') required String avatarURL}) = _$_UserDTO;
+  const _UserDTO._() : super._();
 
   factory _UserDTO.fromJson(Map<String, dynamic> json) = _$_UserDTO.fromJson;
 
