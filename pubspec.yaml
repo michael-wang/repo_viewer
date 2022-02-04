@@ -24,6 +24,7 @@ dependencies:
       ref: 147be70df096015af0633456a951d8f2f9c66dc9
       path: packages/hooks_riverpod
   json_annotation: ^4.4.0
+  logger: ^1.1.0
   material_design_icons_flutter: ^5.0.6595
   oauth2: ^2.0.0
   path: ^1.8.0
