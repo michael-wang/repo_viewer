@@ -28,8 +28,8 @@ class StarredReposRemoteService {
       {'page': page},
     );
 
+    final prevHeaders = await _headersCache.read(reqURL);
     try {
-      final prevHeaders = await _headersCache.read(reqURL);
       final resp = await _dio.getUri(
         reqURL,
         options: Options(
@@ -51,22 +51,30 @@ class StarredReposRemoteService {
         final data = (resp.data as List<dynamic>)
             .map((e) => GithubRepoDTO.fromJson(e as Map<String, dynamic>))
             .toList();
-        return RemoteResponse.withNewData(data);
+        return RemoteResponse.withNewData(
+          data,
+          // Edge case: if returned data is not enough for even one page, there
+          // will be no link header. In this case, maxPage should be 1.
+          maxPage: headers.link?.maxPage ?? 1,
+        );
       } else if (resp.statusCode == HttpStatus.notModified) {
-        return const RemoteResponse.notModified();
+        return RemoteResponse.notModified(
+          maxPage: prevHeaders?.link?.maxPage ?? 0,
+        );
       } else {
         log.w('Unexpected API response code: ${resp.statusCode}');
         throw RestApiException(resp.statusCode);
       }
     } on DioError catch (err) {
       if (err.isNoConnection) {
-        throw const RemoteResponse.noConnection();
+        throw RemoteResponse.noConnection(
+          maxPage: prevHeaders?.link?.maxPage ?? 0,
+        );
       } else if (err.response != null) {
         throw RestApiException(err.response!.statusCode);
       } else {
         rethrow;
       }
     }
-    return const RemoteResponse.withNewData([]);
   }
 }

@@ -87,11 +87,14 @@ class PaginationLink with _$PaginationLink {
 
   // url: <https://api.github.com/user/starred?sort=stars&order=desc&page=3>; rel="last"
   static int _extractPage(String url) {
-    final lastPageUri = Uri.parse(url).queryParameters['page'] ?? '';
-    final r = int.tryParse(lastPageUri);
-    if (r == null) {
-      return 0;
-    }
-    return r;
+    final page = Uri.parse(url).queryParameters['page'] ?? '';
+    // Notice: url may NOT contains 'page' query param, so we should not
+    // counting on it's presence, so use tryParse.
+    // Notice: in case of no link header and req URL has no page query param,
+    // the response code could be 200 OK, which we would attempt to return 1 as
+    // page value. But what about 304 Not Modified, or even other status code?
+    // I decide to leave the edge case default value to the caller, and just
+    // return 0 here.
+    return int.tryParse(page) ?? 0;
   }
 }
