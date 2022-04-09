@@ -1,5 +1,9 @@
 @baseUrl = https://api.github.com
 
+# Save token in user's vscode setting (not project's .vscode/settings) so it won't
+# tracked by source control (which cause github to revoke any token it detects in
+# source code).
+# We can do this because rest client extension supports environment variable.
 @token = {{githubToken}}
 
 @acceptJson = application/vnd.github.v3+json

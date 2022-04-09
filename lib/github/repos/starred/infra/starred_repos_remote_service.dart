@@ -21,6 +21,9 @@ class StarredReposRemoteService {
 
   Future<RemoteResponse<List<GithubRepoDTO>>> getStarredReposPage(
       int page) async {
+    // Github token should not be tracked by source control, or github will
+    // revoke it once detected. So we use dotenv to save token in untracked
+    // file (.env), package the file as asset, and read the token at runtime.
     final token = dotenv.env['GITHUB_TOKEN'];
     const accept = 'application/vnd.github.v3+json';
     final reqURL = Uri.https(
