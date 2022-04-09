@@ -1,6 +1,6 @@
 @baseUrl = https://api.github.com
 
-@token = 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
+@token = {{githubToken}}
 
 @acceptJson = application/vnd.github.v3+json
 
@@ -8,10 +8,11 @@
 
 GET {{baseUrl}}/user/starred
     ?sort=stars
-    ?order=desc
-    ?page=1
+    &order=desc
+    &page=1
 Authorization: token {{token}}
 Accept: {{acceptJson}}
+#If-None-Match: W/"fc39e9c03134895d01a6b94e1cb27b1d805e339a1a8d41230c8ab02c239f112e"
 
 ###
 
@@ -20,7 +21,7 @@ GET {{baseUrl}}/search/repositories
     &sort=stars
     &order=desc
     &page=1
-Authorization: token {{token}}
+# Authorization: token {{token}}
 Accept: {{acceptJson}}
 
 ###
