@@ -29,7 +29,7 @@ class SignInPage extends StatelessWidget {
                   const SizedBox(height: 16.0),
                   Text(
                     'Welcome to\nRepo Viewer',
-                    style: Theme.of(context).textTheme.headline3,
+                    style: Theme.of(context).textTheme.displaySmall,
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 32.0),
